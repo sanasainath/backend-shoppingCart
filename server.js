@@ -20,6 +20,7 @@ const crypto = require("crypto");
 // const sessionConfig=require('./config/sessionConfig')
 const cors=require('cors')
 const wishlist=require('./routes/wishlist')
+const Blog=require('./routes/blog');
 
 
 dotenv.config({ path: './config.env' }); 
@@ -149,6 +150,7 @@ app.use('/api',productRouter);
 app.use('/api',cartRoutes);
 app.use('/api',initialinfo);
 app.use('/api',order);
+app.use('/api',Blog);
 app.use('/api',wishlist);
 
 app.use('/api',address);
