@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
         message: 'Server is up and running.'
     });
 });
-app.get('okokok',(req,res)=>{
+app.get('/okokok',(req,res)=>{
     res.json({message:'ok ok ok'});
 })
 app.post("/api/create-checkout-session", async (req, res) => {
