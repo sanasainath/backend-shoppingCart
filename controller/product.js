@@ -78,7 +78,25 @@ exports.getallProducts=async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+exports.changeProductImageName=async (req, res) => {
+  try {
+    const products = await productModel.find();
 
+    for (let product of products) {
+      for (let picture of product.productPictures) {
+        if (picture.img.startsWith("http://localhost:3001/")) {
+          picture.img = picture.img.replace("http://localhost:3001/", "https://backend-shoppingcart-rfe7.onrender.com/");
+        }
+      }
+      await product.save();
+    }
+
+    res.status(200).json({ message: 'Image URLs updated successfully' });
+  } catch (error) {
+    console.error('Error updating image URLs:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 exports.getFeaturedProducts = async (req, res) => {
   try {
     const featuredProducts = await productModel.find({ isFeatured: true }).populate({

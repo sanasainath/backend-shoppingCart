@@ -10,7 +10,7 @@
     // const { addCategory, getCategory } = require("../controller/category");
     const { requireSignIn, adminMiddleware ,userMiddleware} = require("../middleware/middleware");
 
-    const {createProducts, getProductsOne, getallProducts,deleteProduct,getProductsBySlug,getProductById, getProductsByCategory, getRelatedProducts, getFeaturedProducts, createProductReview, getAllReviews, deleteReviews, searchProduct, updateProduct}=require('../controller/product');
+    const {createProducts, getProductsOne, getallProducts,deleteProduct,getProductsBySlug,getProductById, getProductsByCategory, getRelatedProducts, getFeaturedProducts, createProductReview, getAllReviews, deleteReviews, searchProduct, updateProduct, changeProductImageName}=require('../controller/product');
     const multer = require('multer');
     const storage = multer.diskStorage({
       destination: function (req, file, cb) {
@@ -39,6 +39,7 @@
       router.delete('/products/:productId/reviews/:reviewId',deleteReviews);
       router.get('/api/products/search',searchProduct);
       router.put('/products/:productId', updateProduct);
+      router.put('/updateImageUrls',changeProductImageName);
     
 
    
