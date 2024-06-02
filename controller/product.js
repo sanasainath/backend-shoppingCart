@@ -81,7 +81,7 @@ exports.getallProducts=async (req, res) => {
 exports.changeProductImageName=async (req, res) => {
   try {
     const products = await productModel.find();
-
+console.log("rpdddddddd",products);
     for (let product of products) {
       for (let picture of product.productPictures) {
         if (picture.img.startsWith("http://localhost:3001/")) {

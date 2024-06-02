@@ -132,41 +132,7 @@ app.post("/api/validate", async (req, res) => {
 
     res.json({msg: " Transaction is legit!", orderId: razorpay_order_id,paymentId: razorpay_payment_id});
 })
-app.post('/api/post/blog', async (req, res) => {
-    const blog = new Blog({
-        title: req.body.title,
-        content: req.body.content,
-        author: req.body.author,
-        tags: req.body.tags
-    });
 
-    try {
-        const newBlog = await blog.save();
-        res.status(201).json(newBlog);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-app.get('/api/get/blogs', async (req, res) => {
-    try {
-        const blogs = await Blog.find();
-        res.json(blogs);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-app.get('/api/blogs/:id', async (req, res) => {
-    const id = req.params.id;
-    try {
-        const blog = await Blog.findById(id);
-        if (!blog) {
-            return res.status(404).json({ error: 'Blog post not found' });
-        }
-        res.json(blog);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
 
 app.post('/data', (req, res) => {
     res.status(200).json({
